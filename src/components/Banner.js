@@ -8,42 +8,42 @@ import TrackVisibility from "react-on-screen";
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const toRotate = ["Web Developer", "Frontend Developer", "React Developer"];
   const [text, setText] = useState("");
   const [delta, setDelta] = useState(300 - Math.random() * 100);
 
+  const toRotate = ["Web Developer", "Frontend Developer", "React Developer"];
   const period = 2000;
 
   useEffect(() => {
+    const tick = () => {
+      const i = loopNum % toRotate.length;
+      const fullText = toRotate[i];
+      const updatedText = isDeleting
+        ? fullText.substring(0, text.length - 1)
+        : fullText.substring(0, text.length + 1);
+
+      setText(updatedText);
+
+      if (isDeleting) {
+        setDelta((prevDelta) => prevDelta / 2);
+      }
+
+      if (!isDeleting && updatedText === fullText) {
+        setIsDeleting(true);
+        setDelta(period);
+      } else if (isDeleting && updatedText === "") {
+        setIsDeleting(false);
+        setLoopNum((prevLoopNum) => prevLoopNum + 1);
+        setDelta(500);
+      }
+    };
+
     const ticker = setInterval(() => {
       tick();
     }, delta);
 
     return () => clearInterval(ticker);
-  }, [text, delta]);
-
-  const tick = () => {
-    const i = loopNum % toRotate.length;
-    const fullText = toRotate[i];
-    const updatedText = isDeleting
-      ? fullText.substring(0, text.length - 1)
-      : fullText.substring(0, text.length + 1);
-
-    setText(updatedText);
-
-    if (isDeleting) {
-      setDelta((prevDelta) => prevDelta / 2);
-    }
-
-    if (!isDeleting && updatedText === fullText) {
-      setIsDeleting(true);
-      setDelta(period);
-    } else if (isDeleting && updatedText === "") {
-      setIsDeleting(false);
-      setLoopNum(loopNum + 1);
-      setDelta(500);
-    }
-  };
+  }, [text, delta, isDeleting, loopNum]);
 
   return (
     <section className="banner" id="home">
@@ -54,7 +54,10 @@ export const Banner = () => {
               {({ isVisible }) => (
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                   <span className="tagline">Welcome to my Portfolio</span>
-                  <h1>{`Hi! I'm Aman Shaikh `}<span className="wrap">{text}</span></h1>
+                  <h1>
+                    {`Hi! I'm Aman Shaikh `}
+                    <span className="wrap">{text}</span>
+                  </h1>
                   <p>
                     I build responsive and modern web applications using React.js,
                     JavaScript, HTML, and CSS.
