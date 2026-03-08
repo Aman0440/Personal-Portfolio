@@ -31,12 +31,12 @@ export const Contact = () => {
 
     try {
       const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify(formDetails),
-      });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(formDetails)
+})
 
       const result = await response.json();
 
