@@ -30,7 +30,7 @@ export const Contact = () => {
     setStatus({});
 
     try {
-      const response = await fetch("http://localhost:5000/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -39,7 +39,6 @@ export const Contact = () => {
       });
 
       const result = await response.json();
-      console.log("Server response:", result);
 
       if (response.ok && result.code === 200) {
         setFormDetails(formInitialDetails);
@@ -54,7 +53,6 @@ export const Contact = () => {
         });
       }
     } catch (error) {
-      console.error("Fetch error:", error);
       setStatus({
         success: false,
         message: "Failed to connect to server.",
@@ -74,7 +72,7 @@ export const Contact = () => {
                 <img
                   className={isVisible ? "animate__animated animate__zoomIn" : ""}
                   src={contactImg}
-                  alt="Contact"
+                  alt="Contact illustration"
                 />
               )}
             </TrackVisibility>
