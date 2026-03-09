@@ -5,7 +5,7 @@ import { ArrowRightCircle } from "react-bootstrap-icons";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 
-const toRotate = ["Web Developer", "Frontend Developer", "React Developer"];
+const toRotate = ["Java Full Stack Developer", "Java Backand ", "React Developer"];
 const period = 2000;
 
 export const Banner = () => {
