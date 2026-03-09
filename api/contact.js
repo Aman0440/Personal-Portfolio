@@ -1,19 +1,21 @@
 const nodemailer = require("nodemailer");
 
 module.exports = async function handler(req, res) {
+
   if (req.method !== "POST") {
-    return res.status(405).json({ code: 405, status: "Method not allowed" });
+    return res.status(405).json({ status: "Method not allowed" });
   }
 
   const { firstName, lastName, email, phone, message } = req.body;
 
   try {
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
+        pass: process.env.EMAIL_PASS
+      }
     });
 
     await transporter.sendMail({
@@ -27,19 +29,18 @@ module.exports = async function handler(req, res) {
         <p><b>Email:</b> ${email}</p>
         <p><b>Phone:</b> ${phone}</p>
         <p><b>Message:</b> ${message}</p>
-      `,
+      `
     });
 
-    return res.status(200).json({
-      code: 200,
-      status: "Message Sent",
-    });
+    return res.status(200).json({ status: "Message Sent" });
+
   } catch (error) {
-    console.error("Mail error:", error);
+
+    console.error(error);
 
     return res.status(500).json({
-      code: 500,
-      status: error.message || "Message failed",
+      status: error.message
     });
+
   }
 };
