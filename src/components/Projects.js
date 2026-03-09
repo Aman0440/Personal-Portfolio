@@ -1,8 +1,8 @@
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
 import projImg1 from "../assets/img/portfolio.png";
-import projImg2 from "../assets/img/project-img2.png";
-import projImg3 from "../assets/img/project-img3.png";
+import projImg2 from "../assets/img/Ecommerce_website.jpg";
+import projImg3 from "../assets/img/Task_Manager_Microservice_System.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
@@ -16,28 +16,13 @@ export const Projects = () => {
       imgUrl: projImg1,
     },
     {
-      title: "Business Startup",
-      description: "Design & Development",
+      title: "E-Commerce Platform-Backend  (inProgress)",
+      description: "Currently developing a backend system for an E-Commerce platform using Java, Spring Boot, and MySQL to manage products, users, carts, and orders through RESTful APIs. Implementing secure authentication and role-based authorization using JWT while optimizing database interactions with JPA and Hibernate. The application is being containerized with Docker to support scalable and consistent deployment.",
       imgUrl: projImg2,
     },
     {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg3,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg2,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
+      title: "Task Manager Microservice System  (in Progress)",
+      description: "Currently building a microservices-based task management system using Java and Spring Boot to manage task creation, assignment, and notifications. Implementing asynchronous communication between services using Apache Kafka and improving system performance with Redis caching. The architecture is being designed to ensure scalability, modularity, and efficient service communication.",
       imgUrl: projImg3,
     },
   ];
